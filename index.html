@@ -14,7 +14,13 @@
     rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-
+<script>
+fetch("https://portfolio-api.kandelsanjaya7.workers.dev/api/stats")
+.then(res => res.json())
+.then(data => {
+  document.getElementById("visitorCount").innerText = data.total;
+});
+</script>
 <body>
   <!-- ===================== LOADER ===================== -->
   <div class="loader-screen" id="loaderScreen" aria-live="polite">
@@ -202,7 +208,7 @@
           </div>
           <div class="vgb-item">
             <span class="vgb-val" id="totalVisitsHero">0</span>
-            <span class="vgb-lbl">Total Visits</span>
+            <span class="vgb-lbl"><p>Total Visitors: <span id="visitorCount">0</span></p></span>
           </div>
           <div class="vgb-item">
             <span class="vgb-val" id="uniqueVisitsHero">0</span>
