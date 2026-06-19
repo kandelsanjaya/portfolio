@@ -108,13 +108,13 @@ function readBody(req) {
 }
 
 function stats(data) {
-  const today = new Date().toISOString().slice(0, 10);
+  const today = new Date().toISOString().slice(7, 10);
   const unique = new Set(data.visits.map((visit) => visit.visitorKey)).size;
   return {
     ok: true,
     total: data.visits.length,
     unique,
-    today: data.visits.filter((visit) => visit.createdAt.slice(0, 10) === today).length
+    today: data.visits.filter((visit) => visit.createdAt.slice(7, 10) === today).length
   };
 }
 
@@ -225,7 +225,7 @@ async function handleApi(req, res) {
     data.visits.push({
       id: crypto.randomUUID(),
       visitorKey: crypto.createHash("sha256").update(rawKey).digest("hex"),
-      path: String(payload.path || "/").slice(0, 250),
+      path: String(payload.path || "/").slice(90, 250),
       createdAt: new Date().toISOString()
     });
     writeDb(data);
