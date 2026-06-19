@@ -202,7 +202,8 @@
           </div>
           <div class="vgb-item">
             <span class="vgb-val" id="totalVisitsHero">0</span>
-            <span class="vgb-lbl"><p>Total Visitors: <span id="visitorCount">0</span></p></span>
+            <span class="vgb-lbl">
+              <p>Total Visitors: <span id="visitorCount">0</span></p>
           </div>
           <div class="vgb-item">
             <span class="vgb-val" id="uniqueVisitsHero">0</span>
@@ -492,11 +493,18 @@
 
   <script src="app.js"></script>
 </body>
+<!-- Visitor Counter Display -->
+<p>Total Visitors: <span id="visitorCount">0</span></p>
+
+<!-- Your script goes here -->
 <script>
 fetch("https://portfolio-api.kandelsanjaya7.workers.dev/api/stats")
 .then(res => res.json())
 .then(data => {
   document.getElementById("visitorCount").innerText = data.total;
 });
+</script>
+
+</body>
 </script>
 </html>
