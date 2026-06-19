@@ -14,16 +14,7 @@
     rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<!-- Visitor Counter -->
 
-
-<script>
-fetch("https://portfolio-api.kandelsanjaya7.workers.dev/api/stats")
-.then(res => res.json())
-.then(data => {
-  document.getElementById("visitorCount").innerText = data.total;
-});
-</script>
 <body>
   <!-- ===================== LOADER ===================== -->
   <div class="loader-screen" id="loaderScreen" aria-live="polite">
@@ -206,18 +197,15 @@ fetch("https://portfolio-api.kandelsanjaya7.workers.dev/api/stats")
         <!-- Glassmorphism Box for Clients & Visitor Statistics -->
         <div class="visitor-glass-box reveal">
           <div class="vgb-item">
-            <span class="vgb-val" id="todayVisitsHero">100+</span>
-            <p>Total Visitors: <span id="visitorCount">0</span></p>
-            <span class="vgb-lbl">Total clients</span>
-            <span class="vgb-lbl">
-       
+            <span class="vgb-val" id="todayVisitsHero">0</span>
+            <span class="vgb-lbl">Today Visits</span>
           </div>
           <div class="vgb-item">
-            <span class="vgb-val" id="totalVisitsHero">100+</span>
-            <span class="vgb-lbl">Total projects </span>
+            <span class="vgb-val" id="totalVisitsHero">0</span>
+            <span class="vgb-lbl">Total Visits</span>
           </div>
           <div class="vgb-item">
-            <span class="vgb-val" id="uniqueVisitsHero">70+</span>
+            <span class="vgb-val" id="uniqueVisitsHero">0</span>
             <span class="vgb-lbl">Clients & Visitors</span>
           </div>
         </div>
