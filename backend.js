@@ -220,64 +220,36 @@ async function handleApi(req, res) {
     return sendJson(res, { ok: false, error: "Invalid JSON." }, 400);
   }
 
-  const nodemailer = require("nodemailer");
-
-// --- Configure the transporter (do this once, outside the request handler) ---
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "kandelsanjaya7@gmail.com",        // your Gmail
-    pass: process.env.GMAIL_APP_PASSWORD,     // use an App Password, NOT your regular password
-  },
-});
-
-// --- Your route handler ---
-if (req.method === "POST" && url.pathname === "/api/inquiry") {
-  const required = ["firstName", "lastName", "email", "subject", "message"];
-  const missing = required.filter((key) => !String(payload[key] || "").trim());
-  if (missing.length) {
-    return sendJson(res, { ok: false, error: `Missing fields: ${missing.join(", ")}` }, 400);
+  if (req.method === "POST" && url.pathname === "/api/visitor") {
+    const rawKey = `${req.socket.remoteAddress}|${req.headers["user-agent"] || ""}`;
+    data.visits.push({
+      id: crypto.randomUUID(),
+      visitorKey: crypto.createHash("sha256").update(rawKey).digest("hex"),
+      path: String(payload.path || "/").slice(0, 250),
+      createdAt: new Date().toISOString()
+    });
+    writeDb(data);
+    return sendJson(res, stats(data));
   }
 
-  const { firstName, lastName, email, subject, message } = payload;
-
-  // 1. Optionally save to local DB (keep this if you want a backup)
-  data.inquiries.push({
-    id: crypto.randomUUID(),
-    firstName: firstName.trim(),
-    lastName: lastName.trim(),
-    email: email.trim(),
-    subject: subject.trim(),
-    message: message.trim(),
-    createdAt: new Date().toISOString(),
-  });
-  writeDb(data);
-
-  // 2. Send email
-  const mailOptions = {
-    from: `"Portfolio Contact" <kandelsanjaya7@gmail.com>`,
-    to: "kandelsanjaya7@gmail.com",
-    replyTo: email.trim(),
-    subject: `[Portfolio Inquiry] ${subject.trim()}`,
-    html: `
-      <h2>New Contact Inquiry</h2>
-      <p><strong>From:</strong> ${firstName.trim()} ${lastName.trim()}</p>
-      <p><strong>Email:</strong> ${email.trim()}</p>
-      <p><strong>Subject:</strong> ${subject.trim()}</p>
-      <hr/>
-      <p><strong>Message:</strong></p>
-      <p>${message.trim().replace(/\n/g, "<br/>")}</p>
-    `,
-  };
-
-  try {
-    await transporter.sendMail(mailOptions);
-    return sendJson(res, { ok: true, message: "Message sent to your Gmail." });
-  } catch (err) {
-    console.error("Email error:", err);
-    return sendJson(res, { ok: false, error: "Message saved but email failed to send." }, 500);
+  if (req.method === "POST" && url.pathname === "/api/inquiry") {
+    const required = ["firstName", "lastName", "email", "subject", "message"];
+    const missing = required.filter((key) => !String(payload[key] || "").trim());
+    if (missing.length) {
+      return sendJson(res, { ok: false, error: `Missing fields: ${missing.join(", ")}` }, 400);
+    }
+    data.inquiries.push({
+      id: crypto.randomUUID(),
+      firstName: payload.firstName.trim(),
+      lastName: payload.lastName.trim(),
+      email: payload.email.trim(),
+      subject: payload.subject.trim(),
+      message: payload.message.trim(),
+      createdAt: new Date().toISOString()
+    });
+    writeDb(data);
+    return sendJson(res, { ok: true, message: "Message saved. Sanjaya can review it in portfolio-data.json." });
   }
-}
 
   sendJson(res, { ok: false, error: "Endpoint not found." }, 404);
 }
