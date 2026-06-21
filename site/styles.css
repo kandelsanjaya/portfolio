@@ -1475,7 +1475,11 @@ img {
   font-size: 0.8rem;
   border: 1px solid var(--line);
 }
-
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
 .contact-form {
   display: grid;
   gap: 15px;
