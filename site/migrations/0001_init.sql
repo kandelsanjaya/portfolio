@@ -1,9 +1,8 @@
 -- Portfolio database schema (Cloudflare D1 / SQLite)
 
-CREATE TABLE IF NOT EXISTS visits (
-  id TEXT PRIMARY KEY,
-  visitor_key TEXT NOT NULL,
-  path TEXT NOT NULL DEFAULT '/',
+CREATE TABLE IF NOT EXISTS visitors (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  page TEXT NOT NULL DEFAULT '/',
   created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
 );
 

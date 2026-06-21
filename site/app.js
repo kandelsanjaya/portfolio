@@ -238,15 +238,15 @@ function setupGalleryScroll() {
 
 async function trackVisitor() {
   try {
-    const data = await api("/api/visitor", {
+    await fetch("https://portfolio-api.kandelsanjaya7.workers.dev/api/visitor", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ path: location.pathname })
     });
-    setStats(data);
-  } catch (error) {
-    setStats({ today: 0, total: 0, unique: 0 });
+  } catch (e) {
+    console.warn("Visitor tracking failed:", e);
   }
+}
 }
 
 function setStats(data) {
