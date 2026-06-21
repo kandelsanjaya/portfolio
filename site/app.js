@@ -238,15 +238,16 @@ function setupGalleryScroll() {
 
 async function trackVisitor() {
   try {
-    await fetch("https://portfolio-api.kandelsanjaya7.workers.dev/api/visitor", {
+    await fetch("/api/visitor", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ path: location.pathname })
     });
+    const stats = await api("/api/stats");
+    setStats(stats);
   } catch (e) {
     console.warn("Visitor tracking failed:", e);
   }
-}
 }
 
 function setStats(data) {
@@ -287,7 +288,7 @@ function setupTheme() {
     if (themeToggle) themeToggle.setAttribute("aria-label", `Cycle color theme. Current theme: ${labels[theme]}`);
   };
   apply(saved);
-  
+
   const toggle = qs("#themeToggle");
   if (toggle) {
     toggle.addEventListener("click", () => {
@@ -541,7 +542,7 @@ function setupLoader() {
     function animateSparks() {
       if (!sparksCtx) return;
       sparksCtx.clearRect(0, 0, canvasW, canvasH);
-      
+
       if (sparks.length < 60) {
         sparks.push(new Spark());
       }
@@ -614,7 +615,7 @@ function setupCursorSparksTrail() {
       ctx.fillStyle = this.color;
       ctx.shadowBlur = 15;
       ctx.shadowColor = "rgba(255, 215, 0, 0.8)";
-      
+
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
       ctx.fill();
@@ -625,7 +626,7 @@ function setupCursorSparksTrail() {
   window.addEventListener("mousemove", (e) => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
-    
+
     for (let i = 0; i < 3; i++) {
       particles.push(new Sparkle(mouse.x, mouse.y));
     }
@@ -654,7 +655,7 @@ function setupPortraitMagnet() {
 
   const current = { x: 0, y: 0, ry: 0, rx: 0 };
   const target = { x: 0, y: 0, ry: 0, rx: 0 };
-  
+
   // Spring Wobble parameters (Simulating magnetic poles oscillation)
   let wobbleAngleX = 0;
   let wobbleAngleY = 0;
@@ -667,7 +668,7 @@ function setupPortraitMagnet() {
 
   function animate() {
     if (reduceMotion) return;
-    
+
     // Smooth pointer magnet tracking (Opposite direction)
     current.x += (target.x - current.x) * 0.08;
     current.y += (target.y - current.y) * 0.08;
@@ -688,7 +689,7 @@ function setupPortraitMagnet() {
 
     // Apply translations in document layout flow (no collapses)
     image.style.transform = `translate3d(${current.x}px, ${current.y}px, 0px) rotateY(${finalRy}deg) rotateX(${finalRx}deg)`;
-    
+
     requestAnimationFrame(animate);
   }
 
@@ -770,7 +771,7 @@ function setupNav() {
     const max = document.documentElement.scrollHeight - innerHeight;
     const progressEl = qs("#progress");
     if (progressEl) progressEl.style.width = `${(scrollY / max) * 100}%`;
-    
+
     const current = sections.findLast((section) => scrollY + 180 >= section.offsetTop);
     document.querySelectorAll(".nav-links a").forEach((link) => {
       const href = link.getAttribute("href");

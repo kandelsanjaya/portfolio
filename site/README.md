@@ -131,3 +131,46 @@ After that, every visit calls `/api/visitor`, which writes to D1 and updates
 the counters you see in the hero section and contact section in real time,
 and the contact form's POST requests land in the `inquiries` table instead of
 disappearing.
+# Sanjaya Portfolio — Backend Fix Package
+
+## What's in here
+- `app.js` — fixed front-end (removed stray syntax-breaking brace, fixed
+  /api paths, wired up stats fetching that was previously dead code).
+- `wrangler.toml` — single, correct Pages config (D1 binding included).
+- `migrations/0001_full_setup.sql` — full schema + your seed content in one file.
+- `functions/api/*.js` — all 7 Pages Functions: visitor, stats, profile,
+  services, skills, projects, gallery, inquiry.
+
+## Deploy steps
+
+1. Copy `app.js` into your project root, replacing the old one.
+2. Copy `wrangler.toml` into your project root, replacing the old one.
+3. Copy the `functions/` folder into your project root (merge with existing).
+4. Copy the `migrations/` folder into your project root.
+
+5. Run the migration (creates tables AND inserts your seed content):
+   ```
+   wrangler d1 execute portfolio-db --remote --file=./migrations/0001_full_setup.sql
+   ```
+
+6. In the Cloudflare Dashboard:
+   Pages → sanjaya-portfolio → Settings → Functions → D1 database bindings
+   → Add binding: variable name `DB`, database `portfolio-db`.
+   (Required for the LIVE deployed site — wrangler.toml's binding only
+   covers local `wrangler pages dev`.)
+
+7. Deploy:
+   ```
+   wrangler pages deploy . --project-name=sanjaya-portfolio
+   ```
+
+8. Hard refresh the live site, open DevTools Console, confirm no red errors.
+
+## Notes
+- Edit the seed values in `migrations/0001_full_setup.sql` before running it
+  if you want different project/skill/service content than what was scraped
+  from your old fallbackData.
+- The old standalone Worker (`portfolio-api.kandelsanjaya7.workers.dev`) is
+  no longer called anywhere in `app.js` — you can delete that Worker project.
+- The `.glb` 3D model issue is unrelated to this backend fix and still needs
+  its own code/console-error review.
