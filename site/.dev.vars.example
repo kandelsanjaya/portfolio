@@ -1,0 +1,3 @@
+# Copy this file to .dev.vars for local testing (wrangler pages dev reads it automatically).
+# Pick any secret string here; you'll set the real one as a Cloudflare Pages secret later.
+ADMIN_TOKEN=change-me-to-a-long-random-string

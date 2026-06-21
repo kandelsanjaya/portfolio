@@ -1,0 +1,53 @@
+{
+  "inquiries": [],
+  "visits": [
+    {
+      "id": "4e3f2358-92d9-4ab6-8724-944cdc907f63",
+      "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
+      "path": "/",
+      "createdAt": "2026-06-21T07:01:14.607Z"
+    },
+    {
+      "id": "41baa876-c57e-4721-827e-ddace4884daa",
+      "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
+      "path": "/",
+      "createdAt": "2026-06-21T07:02:12.690Z"
+    },
+    {
+      "id": "b83f5544-5ebf-4edd-9072-2372b62397e8",
+      "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
+      "path": "/",
+      "createdAt": "2026-06-21T07:02:12.761Z"
+    },
+    {
+      "id": "b1ad2273-d611-47e4-a07d-4c90ee6773cb",
+      "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
+      "path": "/",
+      "createdAt": "2026-06-21T07:03:42.328Z"
+    },
+    {
+      "id": "9eb90fbd-5b90-4586-9215-ae202b8eacef",
+      "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
+      "path": "/",
+      "createdAt": "2026-06-21T07:04:09.689Z"
+    },
+    {
+      "id": "0646e614-19a3-4188-b2c3-3d6b2cfa0f76",
+      "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
+      "path": "/",
+      "createdAt": "2026-06-21T07:05:47.342Z"
+    },
+    {
+      "id": "d91d612c-cf38-4e30-a426-23d5c784ae09",
+      "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
+      "path": "/",
+      "createdAt": "2026-06-21T07:06:47.400Z"
+    },
+    {
+      "id": "d3969c96-d03b-44df-bc21-01be2f9ee63c",
+      "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
+      "path": "/",
+      "createdAt": "2026-06-21T07:07:20.819Z"
+    }
+  ]
+}
