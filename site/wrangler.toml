@@ -12,4 +12,4 @@ compatibility_date = "2024-09-23"
 [[d1_databases]]
 binding = "DB"
 database_name = "portfolio-db"
-database_id = ""
+database_id = "62643a41-703c-4353-a69e-afb6a43e0233"
