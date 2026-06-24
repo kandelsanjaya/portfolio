@@ -27,20 +27,14 @@ const fallbackData = {
     { title: "Developer Portfolio", category: "Web", mark: "SK", description: "A detailed portfolio with theme switching, contact API, visitor tracking, and project filtering.", tags: ["HTML", "CSS", "Node"] },
     { title: "Brand Identity System", category: "Design", mark: "ID", description: "Reusable visual language for personal brands, landing pages, and creator portfolios.", tags: ["Design", "UX"] }
   ],
+  // ── GALLERY: design portfolio pieces (used as fallback if API is unavailable) ──
   gallery: [
-    { title: "Baglung", src: "images/baglung.jpeg", type: "image", category: "Nepal" },
-    { title: "Best Portrait", src: "images/best.jpeg", type: "image", category: "Portrait" },
-    { title: "Bgl Vibe", src: "images/bgl.jpeg", type: "image", category: "Nepal" },
-    { title: "Dhodeni Hills", src: "images/Dhodeni.jpeg", type: "image", category: "Nepal" },
-    { title: "Dominar Ride", src: "images/dominar.jpeg", type: "image", category: "Travel" },
-    { title: "Home View", src: "images/home.jpeg", type: "image", category: "Personal" },
-    { title: "Creative Kid", src: "images/kid.jpeg", type: "image", category: "Portrait" },
-    { title: "Old Days", src: "images/old.jpeg", type: "image", category: "Personal" },
-    { title: "Professional Me", src: "images/professional.jpeg", type: "image", category: "Portrait" },
-    { title: "Sitting Calm", src: "images/sitting.jpeg", type: "image", category: "Portrait" },
-    { title: "Sometimes Thinker", src: "images/sometimes.jpeg", type: "image", category: "Nepal" },
-    { title: "Upper Mustang 2", src: "images/upper 2.jpeg", type: "image", category: "Travel" },
-    { title: "Upper Mustang Ride", src: "images/upper.jpeg", type: "image", category: "Travel" }
+    { src: "https://portfolio.kandelsanjaya7.workers.dev/uploads/event_.jpg",         title: "Events by Esyfyn",        category: "Flyer Design",  type: "image" },
+    { src: "https://portfolio.kandelsanjaya7.workers.dev/uploads/food_ordering_.jpg",  title: "Food Delivery Poster",    category: "Print Design",  type: "image" },
+    { src: "https://portfolio.kandelsanjaya7.workers.dev/uploads/id_card.jpg",         title: "Company ID Card",         category: "Brand Design",  type: "image" },
+    { src: "https://portfolio.kandelsanjaya7.workers.dev/uploads/login_.jpg",          title: "EleCart Login UI",        category: "UI/UX Design",  type: "image" },
+    { src: "https://portfolio.kandelsanjaya7.workers.dev/uploads/page_2_.jpg",         title: "Primus Academic Agency",  category: "Flyer Design",  type: "image" },
+    { src: "https://portfolio.kandelsanjaya7.workers.dev/uploads/visiting_card_.jpg",  title: "Luxury Visiting Card",    category: "Brand Design",  type: "image" }
   ],
   tech: ["HTML", "CSS", "JavaScript", "Node.js", "REST APIs", "UI/UX", "Prompt Engineering"]
 };
@@ -55,25 +49,22 @@ async function api(path, options = {}) {
 
 async function loadData() {
   try {
-    const [profile, services, skills, projects, gallery] = await Promise.all([
+    const [profile, services, skills, projects] = await Promise.all([
       api("/api/profile"),
       api("/api/services"),
       api("/api/skills"),
-      api("/api/projects"),
-      api("/api/gallery")
+      api("/api/projects")
     ]);
     state.profile = profile;
     state.services = services.items;
     state.skills = skills.items;
     state.projects = projects.items;
-    state.gallery = gallery.items;
     state.tech = profile.tech;
   } catch (error) {
     state.profile = fallbackData.profile;
     state.services = fallbackData.services.map(([number, title, description]) => ({ number, title, description }));
     state.skills = fallbackData.skills.map(([name, level]) => ({ name, level }));
     state.projects = fallbackData.projects;
-    state.gallery = fallbackData.gallery;
     state.tech = fallbackData.tech;
   }
 
@@ -81,8 +72,10 @@ async function loadData() {
   renderSkills();
   renderProjects();
   renderFilters();
-  renderGallery();
   renderTech();
+
+  // Gallery is loaded separately via its own fetch
+  renderGallery();
 }
 
 function renderServices() {
@@ -156,32 +149,67 @@ function renderProjects() {
   setupCardMotion();
 }
 
-function renderGallery() {
+// ══════════════════════════════════════════════════════════════════
+// GALLERY — fetches live from workers API, falls back to local data
+// ══════════════════════════════════════════════════════════════════
+
+async function renderGallery() {
   const grid = qs("#galleryGrid");
   if (!grid) return;
 
-  const items = state.gallery.length ? state.gallery : fallbackData.gallery;
+  // Show skeleton placeholders while fetching
+  grid.innerHTML = Array.from({ length: 6 }, (_, i) => `
+    <article class="gallery-card ${i % 2 === 0 ? 'gallery-card-tall' : 'gallery-card-short'} gallery-skeleton" style="--i:${i};">
+      <div class="gallery-media-wrapper">
+        <div class="gallery-media gallery-skeleton-inner"></div>
+      </div>
+    </article>
+  `).join("");
+
+  let items = [];
+
+  try {
+    const res = await fetch("https://portfolio.kandelsanjaya7.workers.dev/api/gallery");
+    if (!res.ok) throw new Error(`Gallery API error: ${res.status}`);
+    const data = await res.json();
+    // Accept both { items: [...] } and a bare array
+    items = Array.isArray(data) ? data : (data.items || []);
+  } catch (err) {
+    console.warn("Gallery API unavailable, using fallback design items.", err);
+    items = fallbackData.gallery;
+  }
+
+  if (!items.length) {
+    grid.innerHTML = `<p style="grid-column:1/-1;text-align:center;opacity:.5;padding:3rem 0;">No gallery items yet.</p>`;
+    return;
+  }
+
   grid.innerHTML = items.map((item, index) => {
-    const isOdd = index % 2 === 0;
-    const heightClass = isOdd ? 'gallery-card-tall' : 'gallery-card-short';
+    const heightClass = index % 2 === 0 ? "gallery-card-tall" : "gallery-card-short";
     const media = item.type === "video"
       ? `<video src="${item.src}" controls preload="metadata"></video>`
       : `<img src="${item.src}" alt="${item.title}" loading="lazy">`;
+
     return `
-      <article class="gallery-card reveal ${heightClass}" style="--i: ${index};">
+      <article class="gallery-card reveal ${heightClass}" style="--i:${index};">
         <div class="gallery-media-wrapper">
           <div class="gallery-media">${media}</div>
           <div class="gallery-info">
-            <span class="gallery-category">${item.category || "Moment"}</span>
+            <span class="gallery-category">${item.category || "Design"}</span>
             <h4 class="gallery-title">${item.title}</h4>
           </div>
         </div>
       </article>
     `;
   }).join("");
+
   observeReveal();
   setupGalleryScroll();
 }
+
+// ══════════════════════════════════════════════════════════════════
+// END GALLERY SECTION
+// ══════════════════════════════════════════════════════════════════
 
 function setupGalleryScroll() {
   const container = qs(".gallery-scroll-container");
