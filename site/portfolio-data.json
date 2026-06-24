@@ -1,77 +1,123 @@
 {
-  "inquiries": [],
+  "inquiries": [
+    {
+      "id": "a7272157-cce1-4a00-b7e7-9c0c24538f62",
+      "firstName": "bijan",
+      "lastName": "bhudathoki",
+      "email": "bijan7@gmail.com",
+      "subject": "ai",
+      "message": "i am a good learner",
+      "createdAt": "2026-06-22T05:36:23.059Z"
+    }
+  ],
   "visits": [
     {
-      "id": "4e3f2358-92d9-4ab6-8724-944cdc907f63",
+      "id": "a955c8dd-f585-4609-bf94-05d2654aaebb",
       "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
       "path": "/",
-      "createdAt": "2026-06-21T07:01:14.607Z"
+      "createdAt": "2026-06-22T05:36:41.763Z"
     },
     {
-      "id": "41baa876-c57e-4721-827e-ddace4884daa",
+      "id": "455ce773-1a7f-4f0b-90a3-7b7771df2a3e",
       "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
       "path": "/",
-      "createdAt": "2026-06-21T07:02:12.690Z"
+      "createdAt": "2026-06-22T05:36:51.808Z"
     },
     {
-      "id": "b83f5544-5ebf-4edd-9072-2372b62397e8",
+      "id": "626b0ccb-efc5-4500-ac61-8a5a9884afc2",
       "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
       "path": "/",
-      "createdAt": "2026-06-21T07:02:12.761Z"
+      "createdAt": "2026-06-22T05:36:54.317Z"
     },
     {
-      "id": "b1ad2273-d611-47e4-a07d-4c90ee6773cb",
+      "id": "d04f0e68-872d-4b47-9ae8-ce9423cabf1f",
       "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
       "path": "/",
-      "createdAt": "2026-06-21T07:03:42.328Z"
+      "createdAt": "2026-06-22T05:37:01.615Z"
     },
     {
-      "id": "9eb90fbd-5b90-4586-9215-ae202b8eacef",
+      "id": "cdafa9fe-b2a7-4138-b99f-b944e98fe284",
       "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
       "path": "/",
-      "createdAt": "2026-06-21T07:04:09.689Z"
+      "createdAt": "2026-06-22T05:37:04.898Z"
     },
     {
-      "id": "0646e614-19a3-4188-b2c3-3d6b2cfa0f76",
+      "id": "164399e5-ba44-443b-82fe-52931dafb957",
       "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
       "path": "/",
-      "createdAt": "2026-06-21T07:05:47.342Z"
+      "createdAt": "2026-06-22T05:37:14.147Z"
     },
     {
-      "id": "d91d612c-cf38-4e30-a426-23d5c784ae09",
+      "id": "10796510-c13c-48a0-bd44-a180ae547d45",
       "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
       "path": "/",
-      "createdAt": "2026-06-21T07:06:47.400Z"
+      "createdAt": "2026-06-22T06:07:13.073Z"
     },
     {
-      "id": "d3969c96-d03b-44df-bc21-01be2f9ee63c",
+      "id": "68c0b4d3-8331-4bb5-b9eb-21d7123c9d92",
       "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
       "path": "/",
-      "createdAt": "2026-06-21T07:07:20.819Z"
+      "createdAt": "2026-06-24T05:18:20.604Z"
     },
     {
-      "id": "b4315234-e7e6-47ee-a059-1aa25c6941f6",
+      "id": "a64fc033-5872-4f88-8abc-474f24582444",
       "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
       "path": "/",
-      "createdAt": "2026-06-21T07:15:36.959Z"
+      "createdAt": "2026-06-24T05:24:01.076Z"
     },
     {
-      "id": "fb39a0a2-5a85-4faf-94a1-bcfee2be6770",
+      "id": "a364ecfd-47d9-40e6-a3c6-803b9038a2b1",
       "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
       "path": "/",
-      "createdAt": "2026-06-21T07:31:15.330Z"
+      "createdAt": "2026-06-24T05:28:22.860Z"
     },
     {
-      "id": "305e4ab4-6dcd-4086-af51-e9bc7584948d",
+      "id": "f941fe01-7af5-4520-b281-629a4103c271",
       "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
       "path": "/",
-      "createdAt": "2026-06-21T07:45:11.754Z"
+      "createdAt": "2026-06-24T05:35:25.435Z"
     },
     {
-      "id": "848cf52c-685b-4301-a052-9f575fea995a",
+      "id": "8249cc19-7f53-4d27-9972-4905701c2271",
       "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
       "path": "/",
-      "createdAt": "2026-06-21T08:29:45.332Z"
+      "createdAt": "2026-06-24T05:46:20.420Z"
+    },
+    {
+      "id": "fd764587-5700-434e-aff2-154bf63c3719",
+      "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
+      "path": "/",
+      "createdAt": "2026-06-24T05:47:10.037Z"
+    },
+    {
+      "id": "0c738c74-6945-4ea5-bdbe-622667c46fe7",
+      "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
+      "path": "/",
+      "createdAt": "2026-06-24T05:54:01.419Z"
+    },
+    {
+      "id": "80cd3f9e-fb2c-40cc-a016-ba8613d00eef",
+      "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
+      "path": "/",
+      "createdAt": "2026-06-24T06:15:30.473Z"
+    },
+    {
+      "id": "cb62c455-5c0d-4472-b3a9-9bc307b3b533",
+      "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
+      "path": "/",
+      "createdAt": "2026-06-24T06:22:03.365Z"
+    },
+    {
+      "id": "2919732d-f63a-490a-9480-6d7331141906",
+      "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
+      "path": "/",
+      "createdAt": "2026-06-24T06:50:29.060Z"
+    },
+    {
+      "id": "45ca4abe-b26b-43b6-a0fd-ded439890b8d",
+      "visitorKey": "11ce63cdc72bfd1589046fa977e6f186d4060c715ae472505434ebbf58deb64a",
+      "path": "/",
+      "createdAt": "2026-06-24T06:52:55.207Z"
     }
   ]
 }
