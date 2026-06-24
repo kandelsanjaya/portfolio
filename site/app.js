@@ -28,19 +28,12 @@ const fallbackData = {
     { title: "Brand Identity System", category: "Design", mark: "ID", description: "Reusable visual language for personal brands, landing pages, and creator portfolios.", tags: ["Design", "UX"] }
   ],
   gallery: [
-    { title: "Baglung", src: "images/baglung.jpeg", type: "image", category: "Nepal" },
-    { title: "Best Portrait", src: "images/best.jpeg", type: "image", category: "Portrait" },
-    { title: "Bgl Vibe", src: "images/bgl.jpeg", type: "image", category: "Nepal" },
-    { title: "Dhodeni Hills", src: "images/Dhodeni.jpeg", type: "image", category: "Nepal" },
-    { title: "Dominar Ride", src: "images/dominar.jpeg", type: "image", category: "Travel" },
-    { title: "Home View", src: "images/home.jpeg", type: "image", category: "Personal" },
-    { title: "Creative Kid", src: "images/kid.jpeg", type: "image", category: "Portrait" },
-    { title: "Old Days", src: "images/old.jpeg", type: "image", category: "Personal" },
-    { title: "Professional Me", src: "images/professional.jpeg", type: "image", category: "Portrait" },
-    { title: "Sitting Calm", src: "images/sitting.jpeg", type: "image", category: "Portrait" },
-    { title: "Sometimes Thinker", src: "images/sometimes.jpeg", type: "image", category: "Nepal" },
-    { title: "Upper Mustang 2", src: "images/upper 2.jpeg", type: "image", category: "Travel" },
-    { title: "Upper Mustang Ride", src: "images/upper.jpeg", type: "image", category: "Travel" }
+    { title: "Events By Esyfyn", src: "images/event_.jpg", type: "image", category: "Design" },
+    { title: "Food Ordering Flyer", src: "images/food_ordering_.jpg", type: "image", category: "Design" },
+    { title: "ID Card Template", src: "images/id_card.jpg", type: "image", category: "Design" },
+    { title: "Login Page UI", src: "images/login_.jpg", type: "image", category: "Design" },
+    { title: "Primus Academic Agency", src: "images/page_2_.jpg", type: "image", category: "Design" },
+    { title: "Visiting Card", src: "images/visiting_card_.jpg", type: "image", category: "Design" }
   ],
   tech: ["HTML", "CSS", "JavaScript", "Node.js", "REST APIs", "UI/UX", "Prompt Engineering"]
 };
