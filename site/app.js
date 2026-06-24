@@ -27,14 +27,14 @@ const fallbackData = {
     { title: "Developer Portfolio", category: "Web", mark: "SK", description: "A detailed portfolio with theme switching, contact API, visitor tracking, and project filtering.", tags: ["HTML", "CSS", "Node"] },
     { title: "Brand Identity System", category: "Design", mark: "ID", description: "Reusable visual language for personal brands, landing pages, and creator portfolios.", tags: ["Design", "UX"] }
   ],
-  // ── GALLERY: design portfolio pieces (used as fallback if API is unavailable) ──
+  // ── GALLERY: design portfolio pieces — served as static files from /images/ ──
   gallery: [
-    { src: "https://portfolio.kandelsanjaya7.workers.dev/uploads/event_.jpg",         title: "Events by Esyfyn",        category: "Flyer Design",  type: "image" },
-    { src: "https://portfolio.kandelsanjaya7.workers.dev/uploads/food_ordering_.jpg",  title: "Food Delivery Poster",    category: "Print Design",  type: "image" },
-    { src: "https://portfolio.kandelsanjaya7.workers.dev/uploads/id_card.jpg",         title: "Company ID Card",         category: "Brand Design",  type: "image" },
-    { src: "https://portfolio.kandelsanjaya7.workers.dev/uploads/login_.jpg",          title: "EleCart Login UI",        category: "UI/UX Design",  type: "image" },
-    { src: "https://portfolio.kandelsanjaya7.workers.dev/uploads/page_2_.jpg",         title: "Primus Academic Agency",  category: "Flyer Design",  type: "image" },
-    { src: "https://portfolio.kandelsanjaya7.workers.dev/uploads/visiting_card_.jpg",  title: "Luxury Visiting Card",    category: "Brand Design",  type: "image" }
+    { src: "images/event_.jpg",         title: "Events by Esyfyn",        category: "Flyer Design",  type: "image" },
+    { src: "images/food_ordering_.jpg",  title: "Food Delivery Poster",    category: "Print Design",  type: "image" },
+    { src: "images/id_card.jpg",         title: "Company ID Card",         category: "Brand Design",  type: "image" },
+    { src: "images/login_.jpg",          title: "EleCart Login UI",        category: "UI/UX Design",  type: "image" },
+    { src: "images/page_2_.jpg",         title: "Primus Academic Agency",  category: "Flyer Design",  type: "image" },
+    { src: "images/visiting_card_.jpg",  title: "Luxury Visiting Card",    category: "Brand Design",  type: "image" }
   ],
   tech: ["HTML", "CSS", "JavaScript", "Node.js", "REST APIs", "UI/UX", "Prompt Engineering"]
 };
@@ -150,39 +150,14 @@ function renderProjects() {
 }
 
 // ══════════════════════════════════════════════════════════════════
-// GALLERY — fetches live from workers API, falls back to local data
+// GALLERY 
 // ══════════════════════════════════════════════════════════════════
 
-async function renderGallery() {
+function renderGallery() {
   const grid = qs("#galleryGrid");
   if (!grid) return;
 
-  // Show skeleton placeholders while fetching
-  grid.innerHTML = Array.from({ length: 6 }, (_, i) => `
-    <article class="gallery-card ${i % 2 === 0 ? 'gallery-card-tall' : 'gallery-card-short'} gallery-skeleton" style="--i:${i};">
-      <div class="gallery-media-wrapper">
-        <div class="gallery-media gallery-skeleton-inner"></div>
-      </div>
-    </article>
-  `).join("");
-
-  let items = [];
-
-  try {
-    const res = await fetch("https://portfolio.kandelsanjaya7.workers.dev/api/gallery");
-    if (!res.ok) throw new Error(`Gallery API error: ${res.status}`);
-    const data = await res.json();
-    // Accept both { items: [...] } and a bare array
-    items = Array.isArray(data) ? data : (data.items || []);
-  } catch (err) {
-    console.warn("Gallery API unavailable, using fallback design items.", err);
-    items = fallbackData.gallery;
-  }
-
-  if (!items.length) {
-    grid.innerHTML = `<p style="grid-column:1/-1;text-align:center;opacity:.5;padding:3rem 0;">No gallery items yet.</p>`;
-    return;
-  }
+  const items = fallbackData.gallery;
 
   grid.innerHTML = items.map((item, index) => {
     const heightClass = index % 2 === 0 ? "gallery-card-tall" : "gallery-card-short";
